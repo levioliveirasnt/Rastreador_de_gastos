@@ -183,7 +183,7 @@ def delete(id_despesa):
         escritor.writeheader()
         escritor.writerows(todas_despesas)
 
-    click.secho("🎉 Despesa deletada com sucesso!", fg="green")
+    click.secho(f"🎉 Despesa com ID {id_despesa} deletada com sucesso!", fg="green")
 
 
 @cli.command(name="list", help="Listar todas as despesas registradas.")
@@ -213,7 +213,7 @@ def list_expenses(category, month_year):
     table.add_column("ID", justify="left")
     table.add_column("Data", justify="right")
     table.add_column("Descrição", justify="left")
-    table.add_column("Valor", justify="right")
+    table.add_column("Valor (R$)", justify="right")
     table.add_column("Categoria", justify="left")
 
     with open("expenses.csv", "r", encoding="utf-8") as arquivo:
@@ -230,11 +230,11 @@ def list_expenses(category, month_year):
                 total += valor_float
                 table.add_row(
                     linha["ID"], linha["Data"], linha["Descrição"],
-                    f"R$ {valor_float:.2f}", linha["Categoria"]
+                    f"{valor_float:.2f}", linha["Categoria"]
                 )
 
     table.add_section()
-    table.add_row("Total", "", "", f"R$ {total:.2f}", "")
+    table.add_row("Total", "", "", f"{total:.2f}", "")
     console.print(table)
 
 
@@ -272,15 +272,15 @@ def resume(month_year):
 
     table = Table(title=f"Resumo de Gastos — Período: {month_year}")
     table.add_column("Categoria", justify="left", style="cyan")
-    table.add_column("Valor Total", justify="right", style="green")
-    table.add_column("Participação (%)", justify="right", style="magenta")
+    table.add_column("Valor (R$)", justify="right", style="green")
+    table.add_column("Percentual", justify="right", style="magenta")
 
     for categoria, valor_parcial in resumo_categorias.items():
         percentual = (valor_parcial / total_geral) * 100
-        table.add_row(categoria, f"R$ {valor_parcial:.2f}", f"{percentual:.1f}%")
+        table.add_row(categoria, f"{valor_parcial:.2f}", f"{percentual:.1f}%")
 
     table.add_section()
-    table.add_row("Total Geral", f"R$ {total_geral:.2f}", "100.0%")
+    table.add_row("Total Geral", f"{total_geral:.2f}", "100.0%")
     console.print(table)
 
 
