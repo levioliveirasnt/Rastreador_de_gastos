@@ -4,6 +4,7 @@
 
 Aplicação em Python para registrar, organizar e consultar os seus gastos de forma simples e prática pelo terminal.  
 Os dados são salvos em arquivo CSV.
+O projeto foi desenvolvido em Python utilizando as bibliotecas `click` e `rich` para criar uma experiência de terminal mais organizada e interativa.
 
 ## Demonstração
 
@@ -23,22 +24,18 @@ Exemplo:
 
 ### Pré-requisitos
 - Python 3.10 ou superior
+- Bibliotecas listadas em `requirements.txt`
 
 ### Instalação
 
-Clone o repositório:
-
 ```bash
-git clone <https://github.com/levioliveirasnt/rastreador_de_gastos.git>
+git clone <URL_DO_REPOSITORIO>
 cd rastreador_de_gastos
-```
-
-Instale as dependências:
-
-```bash
+python -m venv venv
+source venv/bin/activate   # Linux / Mac
+venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
-
 ## Como usar
 
 Execute o programa com:
